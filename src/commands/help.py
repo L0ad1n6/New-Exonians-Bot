@@ -37,13 +37,13 @@ class Help(commands.Cog):
             inline=False
         )
         embed.add_field(
-            name="Social Credit",
-            value="cred (\"--help cred\" for more credit commands)",
+            name="Music Commands",
+            value="join, leave, add, play, pause, \nskip, back, shuffle, loop, unloop, \nqueue, remove, clear, \nvolume (--help volume for more), \nlyrics, eq, aeq, nowplaying, skipto, \nrestart, seek ",
             inline=False
         )
         embed.add_field(
-            name="Music Commands",
-            value="join, leave, add, play, pause, \nskip, back, shuffle, loop, unloop, \nqueue, remove, clear, \nvolume (--help volume for more), \nlyrics, eq, aeq, nowplaying, skipto, \nrestart, seek ",
+            name="Utility Commands",
+            value="",
             inline=False
         )
         await ctx.channel.send(embed=embed)
@@ -147,53 +147,7 @@ class Help(commands.Cog):
             syntax="--[warns|warnings] [all|clear|warn index|none] [user]"
         )
         await ctx.channel.send(embed=embed)
-    
-    # Social Credit Help Commands
-    @help.group()
-    async def cred(self, ctx):
-        embed = help_embed(
-            name="Cred - Social Credit Command",
-            description="Displays user's social credit.\nCommands: add, reset, set, sub",
-            syntax="--[cred|credits|credit] [user]"
-        )
-        await ctx.channel.send(embed=embed)
-    
-    @cred.command()
-    async def add(self, ctx):
-        embed = help_embed(
-            name="Add - Adminstrator Command",
-            description="Increases user's social credit by amount.",
-            syntax="--cred [add|increase] <amount> [user]"
-        )
-        await ctx.channel.send(embed=embed)
-    
-    @cred.command()
-    async def sub(self, ctx):
-        embed = help_embed(
-            name="Sub - Administrator Command",
-            description="Decreases user's social credit by amount.",
-            syntax="--cred [sub|subtract|reduce|decrease] <amount> [user]"
-        )
-        await ctx.channel.send(embed=embed)
-    
-    @cred.command()
-    async def reset(self, ctx):
-        embed = help_embed(
-            name="Reset - Administrator Command",
-            description="Resets user's social credit",
-            syntax="--cred [reset|zero|restart] [user]"
-        )
-        await ctx.channel.send(embed=embed)
-    
-    @cred.command()
-    async def set(self, ctx):
-        embed = help_embed(
-            name="Set - Administrator Command",
-            description="Sets user's social credit to amount.",
-            syntax="--cred set <amount> [user]"
-        )
-        await ctx.channel.send(embed=embed)
-    
+        
     # Music Help Commands
     @help.command()
     async def join(self, ctx):

@@ -10,5 +10,5 @@ class Default(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print(f"[Bot] Connection to discord established")
-        activity = discord.Game(name="--help | Senatus Populusque Bananus", type=4)
+        activity = discord.Game(name="--help | New Exonians Bot", type=4)
         await self.bot.change_presence(status=discord.Status.idle, activity=activity)

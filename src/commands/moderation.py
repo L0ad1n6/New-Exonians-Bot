@@ -6,8 +6,6 @@ from .errors import *
 import sys
 sys.path.append("..")
 
-from db import *
-
 def com_embed(title, description, footer):
     embed = discord.Embed(
         title=title,
@@ -192,64 +190,6 @@ class Moderation(commands.Cog):
         await user.send("```You have been un-muted on The Peoples Republic of Banana```")
         await user.send(embed=embed)
         return
-
-    @commands.command()
-    @commands.has_permissions(administrator=True)
-    async def warn(self, ctx, user: discord.Member, *, warning=None):
-        data = get_user(user.id)
-
-        if not data:
-            create_user(user.id)
-        
-        add_warn(user.id, warning)
-
-        embed = com_embed(
-            title=f"****{user}**** has been ****WARNED****",
-            description=f"Warning: {warning}",
-            footer=f"Warned By: {ctx.author}"
-        )
-        
-        await ctx.channel.send(embed=embed)
-        await user.send("```You have been warned on The Peoples Republic of Banana```")
-        await user.send(embed=embed)
-
-    @commands.command(aliases=["warnings"])
-    async def warns(self, ctx, user: discord.Member=None, command=None):
-        user = user or ctx.author
-        data = get_user(user.id)
-
-        if not data:
-            create_user(user.id)
-            data = get_user(user.id)
-
-        if command == "clear":
-            if ctx.author.guild_permissions.administrator:
-                warns = len(data["warns"])
-                reset_warns(user.id)
-
-                embed = com_embed(
-                    title=f"{user} warns have been cleared",
-                    description=f"Warns cleared: {warns}",
-                    footer=f"Cleared By: {ctx.author}"
-                )
-                await ctx.channel.send(embed=embed)
-                await user.send("```Your warns on The Peoples Republic of Banana have been cleared```")
-                await user.send(embed=embed)
-            else:
-                embed = err_embed(
-                    error=f"{ctx.author} you don't have administrator privilages",
-                    author=ctx.author
-                )
-                await ctx.channel.send(embed=embed)
-
-        else:
-            embed = com_embed(
-                title=f"{user} has {len(warns:=data['warns'])} warnings",
-                description="\n".join(warns),
-                footer=f"Requested By: {ctx.author}"
-            )
-
-            await ctx.channel.send(embed=embed)
 
     @commands.command(aliases=["clear, clean"])
     @commands.has_permissions(manage_messages=True)

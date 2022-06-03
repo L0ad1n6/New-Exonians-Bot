@@ -5,8 +5,6 @@ from wavelink.errors import ZeroConnectedNodes
 import os
 import sys
 
-class InsufficientCredit(commands.CommandError):
-    pass
 class InsufficientRole(commands.CommandError):
     pass
 class UserNotConnected(commands.CommandError):
@@ -60,9 +58,6 @@ class Error(commands.Cog):
 
         elif isinstance(error, CommandNotFound):
             msg = "<:yellowx:938093739283451964> The command you are trying to use does not exist"
-
-        elif isinstance(error, InsufficientCredit):
-            msg = "<:yellowx:938093739283451964> You do not have enough Social Credit to perform this action"
 
         elif isinstance(error, InsufficientRole):
             msg = "<:yellowx:938093739283451964> Your top role is not high enough to perform this action"

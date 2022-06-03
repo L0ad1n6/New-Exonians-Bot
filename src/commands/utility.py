@@ -5,7 +5,6 @@ from .errors import *
 import sys
 sys.path.append("..")
 
-from db import *
 
 class Utility(commands.Cog):
     def __init__(self, bot):
